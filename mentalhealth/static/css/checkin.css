@@ -1,0 +1,54 @@
+.slider{
+    display:inline;
+    text-align:center;
+}
+
+.slider input{
+    width: 500px;
+
+}
+
+h3, p{
+    display:inline;
+}
+
+p{
+    font-size: 20px;
+
+}
+
+.question{
+    padding-bottom: 10px;
+}
+
+.info{
+    padding-bottom: 20px;
+    font-size: 23px;
+}
+
+.range-label{
+    font-size: 25px;
+    font-weight: 600;
+    color: blue;
+}
+
+.all-questions{
+    width: 900px;
+    margin: 0 auto;
+}
+
+.button-container{
+    float: right;
+    padding-right: 130px;
+    padding-top: 20px;
+}
+
+.already-done{
+    font-size: 23px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+}
+
+.home-button{
+    font-size: 18px;
+}

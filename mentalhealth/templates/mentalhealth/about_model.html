@@ -1,0 +1,32 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title%}About Project{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/about_model.css' %}">
+
+<h1>About Project</h1>
+<div class="page">
+    <div>
+        I have created this website to support a sentiment analysis model I have been learning how to develop. Listed
+        below are the Google Colab notebook and GitHub repository where I developed the predictive model and this
+        website respectively. Within the notebook are in-depth notes explaining every step along the way in developing
+        the model. I hope you can get something out of either of the two!
+    </div>
+    
+    <div class="row">
+        <div class="column">
+            <a href="https://colab.research.google.com/drive/117JIc-V6DViaTNyyO-PcD4zLAVBAXe3q?usp=sharing">
+                <img src="{% static 'icons/colab_logo.png' %}">
+            </a>
+        </div>
+        <div class="column">
+            <a href="https://github.com/loganwoudstra/mentalhealth_site">
+                <img src="{% static 'icons/github_logo.png' %}">
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

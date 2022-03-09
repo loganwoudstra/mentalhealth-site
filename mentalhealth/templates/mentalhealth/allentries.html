@@ -1,0 +1,60 @@
+{% extends 'mentalhealth/base.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block title%}Journal Entries{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/allentries.css' %}">
+
+
+<h1>Journal Entries</h1>
+{% if entries|length > 0 %}
+    <div class="entry-info">Select one of your past entries below to view and edit it:
+    <!--    <button type="button" class="btn btn-info btn-lg ">+New Entry</button>-->
+    </div>
+
+    <div class="list-group">
+         <a href="/newentry" class="list-group-item list-group-item-action list-group-item-secondary flex-column">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 new-entry">+ New Entry</h5>
+                <small class="text-muted">Now</small>
+            </div>
+            <p class="mb-1">Click here to create a new entry!</p>
+        </a>
+
+        {% for entry in entries %}
+        <a href="/{{entry.id}}" class="list-group-item list-group-item-action flex-column">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{entry.title}}</h5>
+                {% with entry.last_edit_date|days_since as date %}
+                    {% if date == 0 %}
+                        <small class="text-muted">Today</small>
+                    {% elif date == 1 %}
+                        <small class="text-muted">Yesterday</small>
+                    {% else %}
+                        <small class="text-muted">{{entry.last_edit_date | days_since }} days ago</small>
+                    {% endif %}
+                {% endwith %}
+                
+            </div>
+            
+            <p class="mb-1">{{entry.preview}}</p>
+            {% if entry.depression == True %}
+                <span class="badge badge-danger badge-pill">Depressive Entry</span>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+
+{% else %}
+    <div class="entry-info">
+        <div id="text">It looks like you don't have any journal entries to display. Click the journal below to create a new entry!</div>
+        <a href="/newentry" >
+                <img class="journal" src="{% static 'icons/journal.png' %}">
+        </a>
+    </div>
+{% endif %}
+
+{% endblock %}

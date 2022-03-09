@@ -1,0 +1,34 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title%}Journal Entry{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/oldentry.css' %}">
+
+<div class="page">
+  <h1>New Journal Entry</h1>
+  <form method="post" action="/{{entry.id}}/">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Entry Title</label>
+      {{form.title}}
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Entry Text</label>
+      {{form.text}}
+    </div>
+
+    <button class="save-button form-large btn btn-primary my-2 my-sm-0" type="submit" name="save" value="save">Save Entry</button>
+  </form>
+</div>
+
+<form action="/delete/{{entry.id}}/" method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Delete Entry</button>
+</form>
+
+{% endblock %}

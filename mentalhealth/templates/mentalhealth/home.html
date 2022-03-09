@@ -1,0 +1,86 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title%}Home{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
+<h1>Mental Health</h1>
+<div class="page">
+    <div class="section">
+        <div id="chart">
+            <canvas id="bar-chart"></canvas>
+        </div>
+        <div class="info" id="chart-info">
+            <span>{{text}}</span>
+            <a href="/checkin">
+                <button class="btn btn-info button">Complete Check-In</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div id="journal-info" class="info">
+            <span>
+                Click on the journal to create a new journal entry to record your thoughts and feelings, or click
+                <a href="/allentries">here</a>
+                to access all your entries
+            </span>
+        </div>
+        <div id="journal-pic">
+            <a href="/newentry" >
+                <img src="{% static 'icons/journal.png' %}">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+
+    var config = {
+        type: 'bar',
+        data: {
+            datasets: [{
+                data: {{ data|safe }},
+                backgroundColor: [
+                    '#d87746', '#e58251','#f28e5b','#ff9966','#ffa571','#ffb07c','#ffbc87',
+                ],
+                label: 'Check-In Scores The Past Week'
+            }],
+            labels: {{ labels|safe }}
+        },
+        options: {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Day'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true,
+                        max: 5,
+                        stepSize: 1,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Score'
+                    }
+                }]
+            },
+        },
+    };
+    
+    window.onload = function() {
+        var ctx = document.getElementById('bar-chart').getContext('2d');
+        new Chart(ctx, config);
+    };
+</script>
+{% endblock %}

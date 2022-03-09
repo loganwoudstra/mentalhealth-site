@@ -1,0 +1,11 @@
+.entry-info{
+    padding-bottom: 25px;
+    font-size: 25px;
+}
+
+.journal{
+    height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

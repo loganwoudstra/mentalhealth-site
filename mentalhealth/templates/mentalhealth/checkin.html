@@ -1,0 +1,161 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title%}Check In{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/checkin.css' %}">
+<h1>Daily Check-In</h1>
+{% if not_done %}
+    <div class="info">Please answer the following 10 questions on a scale of 1-5 based on how well you relate to them today(1=can't relate, 5=relate alot)</div>
+
+    <form method="post" action="/checkin/">
+        <div class="all-questions">
+            {% csrf_token %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>1.</h3>
+                        <p>I have had a normal appetite and have been eating balanced meals throughout the day</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval1">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval1').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>2.</h3>
+                        <p>I got a quality sleep last night, having fallen asleep and woken up at regular times</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval2">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval2').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>3.</h3>
+                        <p>I have been taking care of my personal hygiene</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval3">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval3').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>4.</h3>
+                        <p>I have gotten physical exercise(even a 10-minute walk counts)</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval4">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval4').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>5.</h3>
+                        <p>I have not been overly stressed out or anxious</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval5">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval5').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>6.</h3>
+                        <p>I have not had any trouble focusing or concentrating</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval6">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval6').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>7.</h3>
+                        <p>I have not been overly tired or lethargic</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval7">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval7').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>8.</h3>
+                        <p>I have interacted with other people, whether it be my family, friends, or peers</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval8">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval8').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>9.</h3>
+                        <p>I had found time to participate in a task I enjoy</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval9">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval9').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="question">
+                        <h3>10.</h3>
+                        <p>I have not been subject to depressive thoughts or mood swings</p>
+                    </div>
+                    <div class="slider">
+                        <div class="form-group">
+                            <span class="range-label" id="rangeval10">3</span>
+                            <input type="range" class="form-control-range slider" onInput="$('#rangeval10').html($(this).val())" step="1" min="1" max="5" name="questions">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="button-container">
+            <button class="form-large btn btn-primary my-2 my-sm-0" type="submit">Submit Check-In</button>
+        </div>
+    </form>
+{% else %}
+    <div>
+        <div class="already-done">Sorry, it looks like you already completed your daily check-in for today. Remember to come back tomorrow to keep record of your results!</div>
+        <a href="/">
+            <button class="btn btn-primary home-button">Return Home</button>
+        </a>
+    </div>
+{% endif %}
+
+{% endblock %}

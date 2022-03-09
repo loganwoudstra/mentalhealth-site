@@ -1,0 +1,46 @@
+{% extends 'mentalhealth/base.html' %}
+
+{% block title%}Depression Detected{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/depression_detected.css' %}">
+
+<h1>Depression Detected</h1>
+
+<div class="page">
+<div>Your previous entry has been flagged for containing potentially depressive or suicidal thoughts.</div>
+<br>
+<div>If you are feeling suicidal, know help is available:</div>
+    <ul>
+        <li>
+            <span>Canada Suicide Prevention Service: <span class="number">1-833-456-4566</span></span>
+        </li>
+        <li>
+            <span>Kids Help Phone: <span class="number">1-800-668-6868</span></span>
+        </li>
+    </ul>
+    
+    <br>
+<div>Please recognize that this prediction may be inaccurate, and is not a medical diagnosis. However if you belive this prediction to be correct, plase know you don't have to suffer through this alone. There are resources available to help you get through this.</div>
+<ul>
+    <li>
+        <a href="https://cmha.bc.ca/documents/depression-2/#cure">Canadian Mental Health Association</a>
+    </li>
+    <li>
+        <a href="https://www.mhfa.ca/en/general-resources">Mental Health Commission of Canada</a>
+    </li>
+    <li>
+        <a href="https://cpa.ca/public/whatisapsychologist/PTassociations/">Canadian Psychological Association</a>
+    </li>
+    <li>
+        <a href="https://www.ementalhealth.ca/">eMental Health</a>
+    </li>
+</ul>
+    
+        <a href="/allentries">
+            <button class="btn btn-primary home-button">Return to All Entries</button>
+        </a>
+</div>
+{% endblock %}
