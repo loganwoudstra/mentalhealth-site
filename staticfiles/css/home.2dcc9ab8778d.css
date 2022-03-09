@@ -1,0 +1,51 @@
+.page{
+    display: flex;
+    flex-flow: column;
+}
+
+.section{
+    display:flex;
+    flex-direction:row;
+}
+
+.info{
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#journal-pic{
+    flex: 1;
+
+}
+
+#journal-pic img {
+    max-width:100%;
+}
+
+#journal-info{
+    flex: 2;
+}
+
+#journal-info span{
+    width: 600px;
+}
+
+#chart{
+    flex:3;
+}
+
+#chart-info{
+    flex: 2;
+    padding-left: 30px;
+}
+
+.button{
+    font-size: 18px;
+}
+
+span{
+    padding-bottom: 10px;
+}
