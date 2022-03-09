@@ -7,6 +7,7 @@ import datetime
 import tensorflow as tf
 import re
 
+
 # stopword_model = tf.keras.models.load_model('mentalhealth/stopword_model.h5')
 # cbow_model = tf.keras.models.load_model('mentalhealth/cbow_model.h5')
 
@@ -41,13 +42,13 @@ def home(response):
                 data.append(0)
             day -= delta
 
-        if data[0] == 0:
+        if data[0] == 0:  # havent done today
             text = "Looks like you haven't completed you daily check-in today. Click the button below to start it"
-        elif data[1] == 0:
+        elif data[1] == 0 or data[0] == data[1]:  # didnt do yesterday, or today is same as yesterday
             text = "Remember to complete your check-in every day to track your well-being throughout the week"
-        elif data[0] > data[1]:
+        elif data[0] > data[1]:  # today is btter than yesterday
             text = "Looks like you're doing better today than you were yesterday. Keep it up!"
-        else:
+        else:  # today is worse than yesterday
             text = "Looks like you're doing a little worse today than yesterday. No worries, there is always tomorrow!"
 
         labels.reverse()
@@ -79,8 +80,8 @@ def newentry(response):
                 entry.last_edit_date = timezone.localtime(timezone.now())
 
                 detected_depression = False
-                if stopword_model.predict([clean_data(entry.text)])[0] >= 0.6 and cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
-
+                if stopword_model.predict([clean_data(entry.text)])[0] >= 0.6 and \
+                        cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
                     entry.depression = True
                     detected_depression = True
                 entry.save()
@@ -122,7 +123,8 @@ def oldentry(response, id):
                     entry.preview = entry.text
 
                 detected_depression = False
-                if stopword_model.predict([clean_data(entry.text)])[0] >= 0.6 and cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
+                if stopword_model.predict([clean_data(entry.text)])[0] >= 0.6 and \
+                        cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
                     entry.depression = True
                     detected_depression = True
                 else:  # only needed for edits because old depressive entries could be edited to not be depressive
@@ -175,8 +177,10 @@ def checkin(response):
     else:
         return redirect("/login")
 
+
 def depression_detected(response):
     return render(response, "mentalhealth/depression_detected.html")
+
 
 def about_model(response):
     return render(response, "mentalhealth/about_model.html")
