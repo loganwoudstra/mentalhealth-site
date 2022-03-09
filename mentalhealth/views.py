@@ -70,7 +70,6 @@ def newentry(response):
         if response.method == "POST":
             form = EntryForm(response.POST)
             if form.is_valid():
-                print("AAAA")
                 entry = form.save(commit=False)
                 if len(entry.text) > 200:
                     entry.preview = entry.text[:197] + "..."
