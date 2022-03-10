@@ -8,8 +8,8 @@ import tensorflow as tf
 import re
 
 
-# stopword_model = tf.keras.models.load_model('mentalhealth/stopword_model.h5')
-# cbow_model = tf.keras.models.load_model('mentalhealth/cbow_model.h5')
+stopword_model = tf.keras.models.load_model('mentalhealth/stopword_model.h5')
+cbow_model = tf.keras.models.load_model('mentalhealth/cbow_model.h5')
 
 
 def clean_data(text_data):
