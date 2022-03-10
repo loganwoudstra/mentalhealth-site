@@ -26,43 +26,43 @@ def clean_data(text_data):
 
 # Create your views here.
 def home(response):
-    if response.user.is_authenticated:
-        weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        labels = []
-        data = []
-        day = timezone.localtime(timezone.now()).date()
-        delta = datetime.timedelta(1)
+    # if response.user.is_authenticated:
+        # weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        # labels = []
+        # data = []
+        # day = timezone.localtime(timezone.now()).date()
+        # delta = datetime.timedelta(1)
+        #
+        # for i in range(7):
+        #     labels.append(weekdays[day.weekday()])
+        #     score = CheckIn.objects.filter(user=response.user).filter(date=day)
+        #     if score:
+        #         data.append(score[0].score)
+        #     else:
+        #         data.append(0)
+        #     day -= delta
+        #
+        # if data[0] == 0:  # havent done today
+        #     text = "Looks like you haven't completed you daily check-in today. Click the button below to start it"
+        # elif data[1] == 0 or data[0] == data[1]:  # didnt do yesterday, or today is same as yesterday
+        #     text = "Remember to complete your check-in every day to track your well-being throughout the week"
+        # elif data[0] > data[1]:  # today is btter than yesterday
+        #     text = "Looks like you're doing better today than you were yesterday. Keep it up!"
+        # else:  # today is worse than yesterday
+        #     text = "Looks like you're doing a little worse today than yesterday. No worries, there is always tomorrow!"
+        #
+        # labels.reverse()
+        # data.reverse()
 
-        for i in range(7):
-            labels.append(weekdays[day.weekday()])
-            score = CheckIn.objects.filter(user=response.user).filter(date=day)
-            if score:
-                data.append(score[0].score)
-            else:
-                data.append(0)
-            day -= delta
-
-        if data[0] == 0:  # havent done today
-            text = "Looks like you haven't completed you daily check-in today. Click the button below to start it"
-        elif data[1] == 0 or data[0] == data[1]:  # didnt do yesterday, or today is same as yesterday
-            text = "Remember to complete your check-in every day to track your well-being throughout the week"
-        elif data[0] > data[1]:  # today is btter than yesterday
-            text = "Looks like you're doing better today than you were yesterday. Keep it up!"
-        else:  # today is worse than yesterday
-            text = "Looks like you're doing a little worse today than yesterday. No worries, there is always tomorrow!"
-
-        labels.reverse()
-        data.reverse()
-
-    else:
-        labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        data = [1.0, 3.4, 4.4, 2.6, 3.6, 4.2, 1.6]
-        text = "Sign in  to complete daily check-ins to track your mental health over time"
+    # else:
+    #     labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    #     data = [1.0, 3.4, 4.4, 2.6, 3.6, 4.2, 1.6]
+    #     text = "Sign in  to complete daily check-ins to track your mental health over time"
 
     return render(response, 'mentalhealth/home.html', {
-        'labels': labels,
-        'data': data,
-        'text': text,
+        # 'labels': labels,
+        # 'data': data,
+        # 'text': text,
     })
 
 
