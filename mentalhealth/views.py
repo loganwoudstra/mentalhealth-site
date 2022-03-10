@@ -8,7 +8,7 @@ import tensorflow as tf
 import re
 
 
-stopword_model = tf.keras.models.load_model('mentalhealth/stopword_model.h5')
+# stopword_model = tf.keras.models.load_model('mentalhealth/stopword_model.h5')
 cbow_model = tf.keras.models.load_model('mentalhealth/cbow_model.h5')
 
 
@@ -80,8 +80,7 @@ def newentry(response):
                 entry.last_edit_date = timezone.localtime(timezone.now())
 
                 detected_depression = False
-                if stopword_model.predict([clean_data(entry.text)])[0] >= 0.6 and \
-                        cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
+                if cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
                     entry.depression = True
                     detected_depression = True
                 entry.save()
@@ -123,8 +122,7 @@ def oldentry(response, id):
                     entry.preview = entry.text
 
                 detected_depression = False
-                if stopword_model.predict([clean_data(entry.text)])[0] >= 0.6 and \
-                        cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
+                if cbow_model.predict([clean_data(entry.text)])[0] >= 0.6:
                     entry.depression = True
                     detected_depression = True
                 else:  # only needed for edits because old depressive entries could be edited to not be depressive
