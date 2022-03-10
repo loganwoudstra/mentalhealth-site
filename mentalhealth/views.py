@@ -182,5 +182,5 @@ def depression_detected(response):
     return render(response, "mentalhealth/depression_detected.html")
 
 
-def about_model(response):
-    return render(response, "mentalhealth/about_model.html")
+def about_model(request):
+    return render(request, "mentalhealth/about_model.html")
