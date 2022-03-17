@@ -4,5 +4,4 @@ Web app devloped with Django where users can track there mental health through j
 
 
 The website was deployed using Heroku, and can be accessed here: https://mentalhealth-site.herokuapp.com/
-
 (NOTE: Since I am using a free tier and the site has to load a machine learning model, first starting the app can take up to a minute. However, after that the site should run fine)
