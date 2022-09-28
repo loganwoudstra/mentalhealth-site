@@ -1,5 +1,4 @@
-# mentalhealth-site
-
+# Mental Health Natural Languag Processing Model Website
 Web app devloped with Django where users can track there mental health through journal entries and daily check-ins. Journal entries are analyzed with a sentiment analysis model to detect depression or suicdal thoughts. 
 
 The Colab Notebook where I devloped the model can be accesed here: https://colab.research.google.com/drive/117JIc-V6DViaTNyyO-PcD4zLAVBAXe3q?usp=sharing
